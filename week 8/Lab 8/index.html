@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+    <title>Trivia!</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Trivia!</h1>
+    </div>
+
+    <div class="container">
+      <div class="section">
+        <h2>Part 1: Multiple Choice</h2>
+        <hr />
+        <h3>
+          In a 1994 CBS interview, Microsoft co-founder Bill Gates performed
+          what unusual trick on camera?
+        </h3>
+        <button type="button" id="choice1" class="choices">
+          Jumping backwards over a desk
+        </button>
+        <button type="button" id="choice2">Jumping over an office chair</button>
+        <button type="button" id="choice3">Standing on his head</button>
+        <button type="button" id="choice4">
+          Typing on a keyboard during a handstand
+        </button>
+      </div>
+      <div class="section" id="free-response">
+        <h2>Part 2: Free Response</h2>
+        <hr />
+        <h3 id="free-question">
+          What fast food chain has the most locations globally?
+        </h3>
+        <input type="text" id="answer" />
+        <button type="submit" id="submit">Check Answer</button>
+      </div>
+    </div>
+    <script>
+      const submitButton = document.getElementById("submit");
+      const section2 = document.getElementById("free-response");
+      const answer = document.getElementById("answer");
+      const message = document.createElement("p");
+      const choice1 = document.getElementById("choice1");
+      const choice2 = document.getElementById("choice2");
+      const choice3 = document.getElementById("choice3");
+      const choice4 = document.getElementById("choice4");
+
+      submitButton.addEventListener("click", () => {
+        const usersAnswer = document.getElementById("answer").value;
+        if (usersAnswer.toLowerCase() != "subway") {
+          answer.style.backgroundColor = "red";
+          message.innerText = "Incorrect";
+          answer.insertAdjacentElement("beforebegin", message);
+        } else {
+          answer.style.backgroundColor = "green";
+          message.innerText = "Correct!";
+          answer.insertAdjacentElement("beforebegin", message);
+        }
+      });
+      const checkAnswer = (value) => {
+        const message = document.createElement("p");
+        if (value.target.id == "choice2") {
+          value.srcElement.style.backgroundColor = "green";
+          message.innerText = "Correct!";
+          choice1.disabled = true;
+          choice3.disabled = true;
+          choice4.disabled = true;
+        } else {
+          message.innerText = "Incorrect!";
+          value.srcElement.style.backgroundColor = "red";
+          choice2.disabled = true;
+          if (value.target.id == "choice1") {
+            choice3.disabled = true;
+            choice4.disabled = true;
+          } else if (value.target.id == "choice3") {
+            choice1.disabled = true;
+            choice4.disabled = true;
+          } else {
+            choice1.disabled = true;
+            choice3.disabled = true;
+          }
+        }
+        choice1.insertAdjacentElement("beforebegin", message);
+      };
+      choice1.addEventListener("click", checkAnswer);
+      choice2.addEventListener("click", checkAnswer);
+      choice3.addEventListener("click", checkAnswer);
+      choice4.addEventListener("click", checkAnswer);
+    </script>
+  </body>
+</html>
