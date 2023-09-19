@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <table class="table table-striped container">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Transacted</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td class="text-center">{{transaction['symbol']}}</td>
+                <td class="text-center">{{transaction['shares']}}</td>
+                <td class="text-center">{{transaction['price']}}</td>
+                <td class="text-center">{{transaction['date']}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
