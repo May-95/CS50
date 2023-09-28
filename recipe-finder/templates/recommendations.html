@@ -1,0 +1,32 @@
+{% extends "homepage.html" %} {% block main %}
+<div class="mt-5">
+  <h2 class="recommendations-heading text-center mb-5">Recommendations</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-3">
+    {% for recipe in list_of_recipes %}
+    <div class="col text-center mx-auto img border-success">
+      <div class="card h-100 w-100 card-border">
+        <img
+          src="{{recipe['image']}}"
+          class="card-img-top" />
+        <div class="card-body">
+          <h5 class="card-title">{{recipe['name']}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{recipe['dishType']}}</h6>
+          <p class="card-text text-muted line-height">
+            <mark> {{ recipe['cuisineType'] }}</mark>
+            <br />
+            <span class="text-success">{{recipe['ingredients']}}</span>
+            ingredients
+          </p>
+          <a
+            href="{{recipe['url']}}"
+            target="_blank"
+            class="btn btn-outline-success btn-sm w-75 btn-sm justify-content-end align-content-end card-text"
+            >View recipe</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
